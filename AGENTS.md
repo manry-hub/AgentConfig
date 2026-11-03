@@ -8,6 +8,7 @@ Use these shared rules across agents. Follow more specific project or task instr
 
 ## Understand the Project and Request
 
+- When the user explicitly names a role profile, read its matching file in `.agent-knowledge/static/agents/` and apply its instructions in the current session. If the profile is a placeholder, tell the user it is not yet available.
 - Treat the user's request and the repository's current state as the source of truth. Inspect relevant files and instructions before changing anything.
 - Identify the project's stack from its manifests and configuration, then read only the applicable guidance under `.agent-knowledge/static/rules/codestyle`.
 - Before running project commands or changing dependencies, inspect manifests, lockfiles, runtime-version files, and tool configuration. Follow the declared versions, package manager, and existing scripts. Investigate conflicting declarations; ask before choosing a version or package manager only when the project leaves a necessary choice open.

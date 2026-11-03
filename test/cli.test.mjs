@@ -337,6 +337,14 @@ test('local setup installs a complete app and updates the user PATH idempotently
   assert.match(commandOutput, /Installed \d+ files/);
   assert.equal(await readFile(path.join(targetProject, 'AGENTS.md'), 'utf8'),
     await readFile(path.join(repositoryRoot, 'AGENTS.md'), 'utf8'));
+  for (const role of [
+    'ui-designer', 'code-reviewer', 'security-engineer', 'technical-writer',
+    'desktop-engineer', 'mobile-engineer', 'document-generator', 'ai-engineer'
+  ]) {
+    const relativePath = path.join('.agent-knowledge', 'static', 'agents', `${role}.md`);
+    assert.equal(await readFile(path.join(targetProject, relativePath), 'utf8'),
+      await readFile(path.join(repositoryRoot, relativePath), 'utf8'));
+  }
   assert.equal(await hasSymlink(path.join(targetProject, '.agent-knowledge')), false);
 
   await installLocalCli(options);

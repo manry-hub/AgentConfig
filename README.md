@@ -39,6 +39,13 @@ flowchart TD
   production --> work
   decisions --> work
 
+  inspect --> role{Role profile explicitly requested?}
+  role -->|Yes| roleRead[Read matching role profile]
+  roleRead --> roleReady{Profile available?}
+  roleReady -->|Yes| roleApply[Apply profile in current session]
+  roleApply --> work
+  roleReady -->|Placeholder| roleUnavailable[Tell user profile is not yet available]
+
   inspect --> prompt{Manual task prompt selected?}
   prompt -->|Development docs| devSetup[DEVDOCS-SETUP: existing or new project]
   prompt -->|Design| designSetup[DESIGN-SETUP: existing or new application]
@@ -96,6 +103,7 @@ Inspect manifests, lockfiles, runtime versions, and tool configuration before ru
 | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `.agent-knowledge/static/rules/`             | Safety, Git, security, orchestration, coding, stack-specific, and anti-slop guidance.                                                   |
 | `.agent-knowledge/static/commands/`          | Task-specific prompts, invoked manually when relevant.                                                                                  |
+| `.agent-knowledge/static/agents/`            | Role profiles, read in the current session when explicitly requested.                                                                    |
 | `.agent-knowledge/static/templates/`         | Canonical structures for documents and records; copy the structure into the output rather than editing the template.                    |
 | `.agent-knowledge/dynamic/docs/`             | Living product, design, security, and production documentation; see the [documentation index](.agent-knowledge/dynamic/docs/README.md). |
 | `.agent-knowledge/dynamic/docs/notes/`       | ADRs and specifications created for the project.                                                                                        |
@@ -123,6 +131,23 @@ These are Markdown instructions to give to an agent, not CLI subcommands. Read t
 
 
 Development documentation includes PRD, architecture, technology stack, database, authentication, authorization, and security. Production documentation covers network topology and deployment. The setup prompts specify their own mode selection, evidence, and safety requirements; templates are examples and structural guides, not proof of a project's actual configuration.
+
+### Manual role profiles
+
+Explicitly name a role to have the current agent read its profile, for example: “Use ui-designer to review this onboarding flow.” A profile supplies role-specific guidance in the current session; it does not automatically start a separate agent. Project rules and the user's instructions still apply.
+
+The following profiles are available for explicit use:
+
+- [ui-designer](.agent-knowledge/static/agents/ui-designer.md)
+- [code-reviewer](.agent-knowledge/static/agents/code-reviewer.md)
+- [security-engineer](.agent-knowledge/static/agents/security-engineer.md)
+- [technical-writer](.agent-knowledge/static/agents/technical-writer.md)
+- [desktop-engineer](.agent-knowledge/static/agents/desktop-engineer.md)
+- [mobile-engineer](.agent-knowledge/static/agents/mobile-engineer.md)
+- [document-generator](.agent-knowledge/static/agents/document-generator.md)
+- [ai-engineer](.agent-knowledge/static/agents/ai-engineer.md)
+
+When writing a profile, describe its purpose, scope, workflow, expected output, and any related guidance to consult.
 
 ## Optional Orca workflow: plan → isolated scopes → integration
 
