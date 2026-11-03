@@ -16,7 +16,7 @@ Use these shared rules across agents. Follow more specific project or task instr
 ## Plan and Implement Proportionately
 
 - For substantial, multi-step, or architectural work, define the outcome, scope, assumptions, and observable completion criteria, then outline a concise plan. Use the active agent's planning features when available; small, clear tasks can proceed directly.
-- When the user explicitly requests Orca multi-agent orchestration, role separation, or parallel work, follow `.agent-knowledge/static/rules/ORCA-ORCHESTRATION.md`. 
+- When the user explicitly requests multi-agent orchestration, role separation, or parallel work in Orca, follow `.agent-knowledge/static/rules/ORCA-ORCHESTRATION.md`.
 - If an important assumption proves false, the approach stops working, or the scope must materially change, pause to explain the change and revise the plan. Get user input when the new scope or decision is not already authorized.
 - Prefer the simplest maintainable solution that meets the request. Avoid speculative features, dependencies, abstractions, or rewrites without a concrete need.
 - Keep changes surgical: follow the project's architecture and conventions, limit edits to the request and its necessary consequences, remove only artifacts made obsolete by the change, and investigate root causes instead of masking them with avoidable workarounds.
@@ -32,9 +32,10 @@ Use these shared rules across agents. Follow more specific project or task instr
 - For substantial or long-running work, create the next numbered report under `.agent-knowledge/dynamic/reports/tasks/` using `.agent-knowledge/static/templates/TASKS-TEMPLATE.md`. The template is the sole source for report structure.
 - For substantial, multi-stage implementation work, create the next numbered execution plan under `.agent-knowledge/dynamic/workflows/` using `.agent-knowledge/static/templates/WORKFLOW-TEMPLATE.md` before implementation begins. The template is the sole source for workflow structure.
 - Record a material architectural decision in `.agent-knowledge/dynamic/docs/notes/ADR-{incremental-number}-{adr-summary}.md` using `.agent-knowledge/static/templates/ADR-TEMPLATE.md` when it sets a durable technical direction or meaningfully changes one.
+- For each document type, use the highest existing numeric prefix plus one, starting at 1 when none exists. Check the destination and numbering again before creating the file, especially during parallel work; if the number is already in use, choose the next available number without overwriting existing work.
 
 - Use `.agent-knowledge/dynamic/reports/LESSON.md` for reusable prevention rules, not a chronological task log. Follow `.agent-knowledge/static/templates/LESSON-TEMPLATE.md`; the template is the sole source for lesson structure.
-- After any user correction, record its reusable lesson and prevention rule in `.agent-knowledge/dynamic/reports/LESSON.md`; consult relevant lessons on related work.
+- After a user correction, record a lesson in `.agent-knowledge/dynamic/reports/LESSON.md` when it yields a reusable prevention rule; consult relevant lessons on related work. Do not record task-specific preference changes that do not provide a reusable rule.
 - Do not create task-tracking records for trivial work unless the user or project requires them.
 
 ## Repository References

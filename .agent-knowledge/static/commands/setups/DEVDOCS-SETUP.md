@@ -4,12 +4,12 @@ Use this prompt manually to populate or refine the PRD and SDD documents. It sup
 
 ## Select a Mode First
 
-Before reading the codebase or writing documents, ask the user to select one mode:
+Use a mode explicitly selected or clearly stated by the user. If the mode is unclear, ask the user to select one before reading the codebase or writing documents:
 
 1. **Existing Project** — the project already has an implementation that is the primary source of evidence.
 2. **New Project** — the project has not been built, or its implementation is not yet the source of truth.
 
-Do not begin writing the PRD or SDD documents until the user has selected a mode.
+Do not begin writing the PRD or SDD documents until the mode is clear.
 
 ## Target Documents
 
@@ -43,7 +43,7 @@ Do not begin writing the PRD or SDD documents until the user has selected a mode
 
 1. Collect the information needed by each template section: vision and problem, target users, epics and user stories, MVP and post-MVP features, constraints, assumptions, success metrics, and out of scope.
 2. Collect the technical decisions needed by the SDD: project type, architectural boundaries and patterns, components, data flows, deployment, technologies and versions, database topology, schema, relationships, indexes, migrations, seed data, identity and credential lifecycle, access-control model and scope, API enforcement, secret handling, audit, monitoring, and privileged access.
-3. If material information is unavailable, ask the user and wait for an answer. Do not fill requirements, personas, business decisions, or technical decisions with assumptions.
+3. If missing information prevents a meaningful document or would require a consequential decision, ask the user and wait before writing the affected sections. Continue independent sections using available information. Record other unavailable information as open questions. Do not invent requirements, personas, business decisions, or technical decisions.
 4. Write the PRD as a requirements specification and the SDD documents as technical plans. Mark unmade decisions as open questions.
 5. Do not represent features or behavior as implemented until evidence confirms that the project has been built.
 
@@ -51,8 +51,10 @@ Do not begin writing the PRD or SDD documents until the user has selected a mode
 
 - Follow the headings, tables, and MVP, post-MVP, and out-of-scope separation in `PRD-TEMPLATE.md`. Use implementation evidence to record capabilities of an existing project; describe a new project's requirements as plans until implemented.
 - Follow the three sections in `SDD-TEMPLATE.md`: Architecture for system design, components, security, deployment, and decisions; Technology Stack for layers, technologies, versions, and roles; and Database for topology, schema, relationships, indexes, migrations, and seed data. Do not duplicate the technology-stack table in Architecture.
+- Treat template examples, sample rows, diagrams, and suggested values as illustrative, not project facts or decisions. Replace or remove them unless supported by project evidence or the user's stated requirements or decisions.
+- When a document or section does not apply, state that it is not applicable and explain the evidence or stated project scope supporting that conclusion. If applicability is uncertain, record it as an open question.
 - Keep `AUTHENTICATION.md` focused on identities, authentication flows, sessions or tokens, and credential lifecycle. Keep `AUTHORIZATION.md` focused on production access-control policy, resource scope, integration permissions, and API enforcement. Keep `SECURITY.md` focused on security controls, secret handling, audit, monitoring, and privileged access. Cross-reference the core SDD documents rather than duplicating their content.
-- For a durable architectural decision, create an ADR from `ADR-TEMPLATE.md` and link it from affected living documentation when useful.
+- For a new durable architectural decision, create an ADR from `ADR-TEMPLATE.md` and link it from affected living documentation when useful. Use ACCEPTED only for an approved decision and PROPOSED for an unapproved proposal. Document historical decisions from available evidence without inventing rationale; do not create an ADR for each historical decision solely because it was discovered.
 
 ## Writing and Research Rules
 
@@ -66,9 +68,10 @@ Do not begin writing the PRD or SDD documents until the user has selected a mode
 
 ## Completion Criteria
 
-- The user selected a mode before documentation was written.
+- The mode was explicitly selected or clearly stated by the user before documentation was written.
 - The PRD follows `PRD-TEMPLATE.md`, and ARCHITECTURE, TECHNOLOGYSTACK, and DATABASE follow their respective parts of `SDD-TEMPLATE.md`, without modifying those templates. AUTHENTICATION, AUTHORIZATION, and SECURITY cover their defined concerns without duplicating the core SDD documents.
 - Any ADR created follows its canonical template and uses the required numbered filename.
+- Template examples are supported by evidence or stated requirements or decisions, or have been replaced or removed. Inapplicable areas are identified with their basis; uncertain applicability is an open question.
 - In an existing project, implementation facts are distinguishable from planned changes.
 - In a new project, requirements and technical design are treated as plans or proposals, and unavailable information is recorded as an open question.
 - Report changed documents, updates, codebase evidence used when applicable, and remaining open questions or decisions.
