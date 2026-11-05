@@ -1,8 +1,3 @@
-# AGENTS.md
-
-## Overview
-This file defines conventions and rules for the OpenAI Codex agent.
-
 # Go gRPC Agent Rules
 
 ## Project Context
