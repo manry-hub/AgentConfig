@@ -160,12 +160,12 @@ test('configuration references resolve and safe-operations guidance is scaffolde
     ),
     'utf8'
   );
-  assert.match(developmentDocsSetup, /Proyek Berjalan/);
-  assert.match(developmentDocsSetup, /Proyek Baru/);
-  assert.match(developmentDocsSetup, /Jangan mulai menulis PRD maupun dokumen SDD sebelum pengguna memilih mode/);
-  assert.match(developmentDocsSetup, /rencana atau usulan/);
+  assert.match(developmentDocsSetup, /Existing Project/);
+  assert.match(developmentDocsSetup, /New Project/);
+  assert.match(developmentDocsSetup, /Do not begin writing the PRD or SDD documents until the mode is clear/);
+  assert.match(developmentDocsSetup, /plans or proposals/);
   assert.match(developmentDocsSetup, /PRD-TEMPLATE\.md/);
-  assert.match(developmentDocsSetup, /Template adalah struktur kanonis dan tidak boleh diubah/);
+  assert.match(developmentDocsSetup, /The templates are the canonical structure and must not be modified/);
   assert.match(developmentDocsSetup, /SDD-TEMPLATE\.md/);
   assert.match(developmentDocsSetup, /ARCHITECTURE\.md/);
   assert.match(developmentDocsSetup, /TECHNOLOGYSTACK\.md/);
@@ -225,10 +225,10 @@ test('configuration references resolve and safe-operations guidance is scaffolde
     ),
     'utf8'
   );
-  assert.match(designSetup, /Proyek Berjalan/);
-  assert.match(designSetup, /Proyek Baru/);
-  assert.match(designSetup, /Jangan mulai menulis `DESIGN\.md` sebelum pengguna memilih mode/);
-  assert.match(designSetup, /Kumpulkan arah visual berikut sebelum menulis/);
+  assert.match(designSetup, /Existing Project/);
+  assert.match(designSetup, /New Project/);
+  assert.match(designSetup, /Do not begin writing `DESIGN\.md` until the user has selected a mode/);
+  assert.match(designSetup, /Collect the following visual direction before writing/);
 
   const productionDocsSetup = await readFile(
     path.join(
@@ -241,9 +241,9 @@ test('configuration references resolve and safe-operations guidance is scaffolde
     ),
     'utf8'
   );
-  assert.match(productionDocsSetup, /Infrastruktur Berjalan/);
-  assert.match(productionDocsSetup, /Infrastruktur Rencana/);
-  assert.match(productionDocsSetup, /Jangan mulai menulis dokumentasi produksi sebelum pengguna memilih mode/);
+  assert.match(productionDocsSetup, /Existing Infrastructure/);
+  assert.match(productionDocsSetup, /Planned Infrastructure/);
+  assert.match(productionDocsSetup, /Do not begin writing production documentation until the user has selected a mode/);
   assert.match(productionDocsSetup, /NETWORK-TOPOLOGY-TEMPLATE\.md/);
   assert.match(productionDocsSetup, /DEPLOYMENT-TEMPLATE\.md/);
 
@@ -339,7 +339,8 @@ test('local setup installs a complete app and updates the user PATH idempotently
     await readFile(path.join(repositoryRoot, 'AGENTS.md'), 'utf8'));
   for (const role of [
     'ui-designer', 'code-reviewer', 'security-engineer', 'technical-writer',
-    'desktop-engineer', 'mobile-engineer', 'document-generator', 'ai-engineer'
+    'desktop-engineer', 'mobile-engineer', 'document-generator', 'ai-engineer',
+    'tester'
   ]) {
     const relativePath = path.join('.agent-knowledge', 'static', 'agents', `${role}.md`);
     assert.equal(await readFile(path.join(targetProject, relativePath), 'utf8'),

@@ -146,6 +146,7 @@ The following profiles are available for explicit use:
 - [mobile-engineer](.agent-knowledge/static/agents/mobile-engineer.md)
 - [document-generator](.agent-knowledge/static/agents/document-generator.md)
 - [ai-engineer](.agent-knowledge/static/agents/ai-engineer.md)
+- [tester](.agent-knowledge/static/agents/tester.md)
 
 When writing a profile, describe its purpose, scope, workflow, expected output, and any related guidance to consult.
 
