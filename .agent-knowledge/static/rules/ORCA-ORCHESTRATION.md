@@ -13,7 +13,7 @@ Use this workflow only when the user explicitly requests multi-agent orchestrati
 ## Workflow
 
 1. **Planning session**
-   - Analyze the repository and requirements without changing code, configuration, or project documentation.
+   - Analyze the repository and requirements without changing code, configuration, or project documentation. When `codebase-memory-mcp` is available, use `search_graph`, `trace_path`, and `get_architecture` to map dependencies, boundaries, and contracts.
    - Define scope, cross-scope contracts, file ownership, dependencies, acceptance criteria, and the integration strategy.
    - Send the plan to the user. Do not open implementation sessions before explicit approval.
 2. **User decision gate**
@@ -42,7 +42,7 @@ Use this workflow only when the user explicitly requests multi-agent orchestrati
 
 ## Request Patterns
 
-Use these patterns when the user explicitly requests Orca coordination. A handoff must include the goal, the current state, the relevant files or worktree, the expected result, and the next action. Read the target terminal's status before sending it.
+Use these patterns when the user explicitly requests Orca coordination. A handoff must include the goal, the current state, relevant files or knowledge-graph context, the expected result, and the next action. Read the target terminal's status before sending it.
 
 ### Hand off an active task
 

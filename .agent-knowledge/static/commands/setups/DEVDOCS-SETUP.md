@@ -33,7 +33,7 @@ Do not begin writing the PRD or SDD documents until the mode is clear.
 ### Existing Project Mode
 
 1. Map the relevant codebase before writing: stack and versions, entry points, primary flows, interfaces or APIs, important modules, human and service identities, authentication, authorization, integrations, data storage, security controls, and configuration and tests that help confirm behavior. Follow the project's declared package manager and versions.
-2. When available and permitted by project instructions, use the `codebase-memory` skill for structural questions; verify material findings in source files.
+2. When available, use `codebase-memory-mcp` tools (`get_architecture`, `search_graph`, `trace_path`, `get_code_snippet`) for structural questions; verify material findings in source files.
 3. Map information to template sections: vision and problem, target users, epics and user stories, MVP or post-MVP features, constraints and assumptions, success metrics, and out of scope.
 4. Map technical evidence to Architecture, Technology Stack, Database, Authentication, Authorization, and Security: system boundaries, components, data flows, deployment, technologies and versions, topology, schema, relationships, indexes, migrations, seed data, identity and credential lifecycle, access-control scope and enforcement, secret handling, auditing, monitoring, and privileged access.
 5. Separate **current state** (evidenced behavior and design), **business or product decisions** (stated intent or valid documentation), and **requested changes** (unimplemented plans or proposals).

@@ -198,6 +198,7 @@ Optional tool integrations. Use them when they match the task and are available 
 | [Playwright MCP](https://github.com/microsoft/playwright-mcp)                                               | Browser-based user flows and end-to-end checks.                                       |
 | [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp)                                | Runtime diagnostics for console, network, styles, performance, or memory.             |
 | [Context7 MCP](https://github.com/upstash/context7)                                                         | Current documentation for libraries, frameworks, SDKs, APIs, CLIs, or cloud services. |
+| [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)                                      | Persistent knowledge graph for code discovery, call-path tracing, and impact analysis. |
 | [Sequential Thinking MCP](https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking) | Complex or uncertain multi-step analysis and planning.                                |
 
 

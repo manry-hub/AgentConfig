@@ -1,6 +1,6 @@
 # ADR-{incremental-number}: {Decision Summary}
 
-> **DO NOT MODIFY THIS FILE WHEN CREATING AN ADR.** Copy its structure to `.agent-knowledge/dynamic/docs/notes/ADR-{incremental-number}-{adr-summary}.md`, then complete it with evidence and approved decisions.
+> **DO NOT MODIFY THIS FILE WHEN CREATING AN ADR.** Copy its structure to `.agent-knowledge/dynamic/docs/notes/ADR-{incremental-number}-{adr-summary}.md`, then complete it with evidence and approved decisions. When `codebase-memory-mcp` is active, synchronize or query records using the `manage_adr` tool.
 
 **Status:** `{PROPOSED / ACCEPTED / SUPERSEDED / DEPRECATED}`  
 **Date:** `{YYYY-MM-DD}`  

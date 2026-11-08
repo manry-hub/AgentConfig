@@ -16,6 +16,7 @@ Use these procedures whenever a task touches secrets or sensitive data, deletes 
 - A direct user request authorizes the exact action and target it names. Do not ask for approval again for that scope. If the target is ambiguous, the impact is broader than requested, or the action would affect other data, stop and ask before proceeding.
 - Do not run destructive commands beyond the authorized target. Examples include recursive deletion, broad overwrites, `git reset --hard`, `git clean`, force-pushes, deleting unrelated branches, database `DROP` or `TRUNCATE`, and bulk production-data mutations.
 - Prefer reversible changes or a recoverable backup when they meet the task. Verify the target and scope immediately before an irreversible operation.
+- Before deleting or altering shared symbols, types, or APIs, assess the blast radius and verify callers using knowledge graph tools (`trace_path` inbound) or working-tree inspections to ensure unapproved consumers are not broken.
 
 ## External side effects
 

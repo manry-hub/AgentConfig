@@ -12,6 +12,7 @@ Apply these shared practices to new code and refactors. Read the matching guide 
 ## Change Quality
 
 - Preserve public behavior unless the request changes it.
+- Before modifying public interfaces, shared types, or removing code, evaluate caller impact using knowledge graph tools (`trace_path` inbound or `detect_changes`) when available.
 - Add or update tests when they materially verify new behavior or prevent a confirmed regression.
 - Run the project's relevant formatter, linter, type check, build, or tests when available and proportionate to the change.
 - Keep commits and pull requests focused when Git work is requested; follow `GIT.md` for Git procedures.

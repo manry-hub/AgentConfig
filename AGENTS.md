@@ -10,6 +10,13 @@ Use these shared rules across agents. Follow more specific project or task instr
 
 - When the user explicitly names a role profile, read its matching file in `.agent-knowledge/static/agents/` and apply its instructions in the current session. If the profile is a placeholder, tell the user it is not yet available.
 - Treat the user's request and the repository's current state as the source of truth. Inspect relevant files and instructions before changing anything.
+- For code discovery, architecture navigation, and structural questions, prefer knowledge graph tools (`codebase-memory-mcp`) over recursive grep or broad file reads whenever the MCP server is available:
+  1. `search_graph` — locate functions, classes, routes, or symbols by pattern.
+  2. `trace_path` — trace who calls a function (`inbound`) or what it calls (`outbound`).
+  3. `get_code_snippet` — retrieve targeted symbol implementations without reading whole files.
+  4. `check_index_coverage` — verify indexed paths and check for unindexed ranges before drawing negative or exhaustive conclusions.
+  5. `get_architecture` — inspect high-level system components and module boundaries.
+  Fall back to grep, glob, or direct file reading for string literals, error logs, configuration and non-code files (e.g., Dockerfiles, YAML), or when graph coverage is incomplete.
 - Identify the project's stack from its manifests and configuration, then read only the applicable guidance under `.agent-knowledge/static/rules/codestyle`.
 - Before running project commands or changing dependencies, inspect manifests, lockfiles, runtime-version files, and tool configuration. Follow the declared versions, package manager, and existing scripts. Investigate conflicting declarations; ask before choosing a version or package manager only when the project leaves a necessary choice open.
 - Make consequential assumptions and tradeoffs explicit. Ask a focused question when plausible interpretations or an unresolved decision could materially change the result; otherwise proceed using the clearest supported interpretation.
@@ -21,6 +28,7 @@ Use these shared rules across agents. Follow more specific project or task instr
 - If an important assumption proves false, the approach stops working, or the scope must materially change, pause to explain the change and revise the plan. Get user input when the new scope or decision is not already authorized.
 - Prefer the simplest maintainable solution that meets the request. Avoid speculative features, dependencies, abstractions, or rewrites without a concrete need.
 - Keep changes surgical: follow the project's architecture and conventions, limit edits to the request and its necessary consequences, remove only artifacts made obsolete by the change, and investigate root causes instead of masking them with avoidable workarounds.
+- Before modifying or removing shared functions, methods, types, or endpoints, inspect caller impact and blast radius using `trace_path(direction="inbound")` or `detect_changes` to prevent breaking dependent code.
 
 ## Verify and Report
 
@@ -32,7 +40,7 @@ Use these shared rules across agents. Follow more specific project or task instr
 
 - For substantial or long-running work, create the next numbered report under `.agent-knowledge/dynamic/reports/tasks/` using `.agent-knowledge/static/templates/TASKS-TEMPLATE.md`. The template is the sole source for report structure.
 - For substantial, multi-stage implementation work, create the next numbered execution plan under `.agent-knowledge/dynamic/workflows/` using `.agent-knowledge/static/templates/WORKFLOW-TEMPLATE.md` before implementation begins. The template is the sole source for workflow structure.
-- Record a material architectural decision in `.agent-knowledge/dynamic/docs/notes/ADR-{incremental-number}-{adr-summary}.md` using `.agent-knowledge/static/templates/ADR-TEMPLATE.md` when it sets a durable technical direction or meaningfully changes one.
+- Record a material architectural decision in `.agent-knowledge/dynamic/docs/notes/ADR-{incremental-number}-{adr-summary}.md` using `.agent-knowledge/static/templates/ADR-TEMPLATE.md` when it sets a durable technical direction or meaningfully changes one. When `codebase-memory-mcp` is available, sync decisions using `manage_adr`.
 - For each document type, use the highest existing numeric prefix plus one, starting at 1 when none exists. Check the destination and numbering again before creating the file, especially during parallel work; if the number is already in use, choose the next available number without overwriting existing work.
 
 - Use `.agent-knowledge/dynamic/reports/LESSON.md` for reusable prevention rules, not a chronological task log. Follow `.agent-knowledge/static/templates/LESSON-TEMPLATE.md`; the template is the sole source for lesson structure.

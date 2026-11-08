@@ -9,7 +9,7 @@ Safety rules:
 - Follow `.agent-knowledge/static/rules/SAFE-OPERATIONS.md` for detailed data-handling and destructive-operation guidance.
 
 PHASE 1 — AUDIT (make zero changes):
-Find and list, with evidence that each is genuinely unused:
+Find and list, with evidence that each is genuinely unused (verify zero inbound callers via knowledge graph `trace_path(direction="inbound")` or symbol checks where available):
 
 -   Unused files, components, hooks, utils
 -   Unused imports, variables, functions, exports

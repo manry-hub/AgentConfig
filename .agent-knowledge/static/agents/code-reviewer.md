@@ -39,7 +39,7 @@ Provide code reviews that improve code quality AND developer skills:
 - Security vulnerabilities (injection, XSS, auth bypass)
 - Data loss or corruption risks
 - Race conditions or deadlocks
-- Breaking API contracts
+- Breaking API contracts or unhandled callers identified via call-path analysis (`trace_path`, `detect_changes`)
 - Missing error handling for critical paths
 
 ### 🟡 Suggestions (Should Fix)

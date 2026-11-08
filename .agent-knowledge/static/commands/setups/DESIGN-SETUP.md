@@ -19,7 +19,7 @@ Do not begin writing `DESIGN.md` until the user has selected a mode.
 ### Existing Project Mode
 
 1. Identify the frontend stack, entry points, primary routes or screens, layouts, design tokens, stylesheets, shared components, fonts, icons, and visual assets in the codebase. Follow the project's declared framework version and package manager.
-2. To understand the UI structurally, use the `codebase-memory` skill when available and permitted by project instructions; verify material findings in source code.
+2. To understand the UI structurally, use `codebase-memory-mcp` tools (`search_graph`, `trace_path`, `get_code_snippet`) when available; verify material findings in source code.
 3. For UI/UX work, use the `impeccable` skill and the workflow appropriate to a design audit or documentation task. If it is unavailable, follow the installation instructions in `AGENTS.md` before relying on it.
 4. If the application can run or is already open, inspect relevant pages and states with Playwright MCP. Use Chrome DevTools MCP to inspect computed styles or visual problems that are difficult to confirm from source. If the project contains a `.pen` file or the user requests Pencil work, read the Pencil skill and use Pencil MCP. If the relevant tool is unavailable, proceed from the available source and assets, then state the runtime-inspection limitation.
 5. Record findings in three clear groups:
